@@ -6,12 +6,10 @@ name: Node.js CI
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -19,21 +17,15 @@ jobs:
         node-version: [16.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Install and Build 
+        run: |
+          npm ci
+          npm run build
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build
-      run: npm run build --if-present
-
-    - name: Deploy with gh-pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
