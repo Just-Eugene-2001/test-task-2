@@ -1,4 +1,4 @@
-React-приложение для поиска книг с помощью Google Books API. Для авторизации запросов к API выбран способ с предоставлением API key (https://developers.google.com/books/docs/v1/using#APIKey).
+React-приложение для поиска книг с помощью Google Books API. Для авторизации запросов к API выбран способ с предоставлением API key (https://developers.google.com/books/docs/v1/using#APIKey). Свой API key добавьте в файл .env. 
 Финальный билд приложения запускается из Docker контейнера.
 
 Функционал
